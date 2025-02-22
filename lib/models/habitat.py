@@ -51,6 +51,8 @@ class Habitat:
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
 
+    
+
     @classmethod
     def create(cls, name):
         habitat = cls(name)

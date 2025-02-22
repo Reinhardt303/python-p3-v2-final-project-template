@@ -11,13 +11,15 @@ def habitat_sub_menu():
     print("1: View animals by habitat")
     print("2: Add a habitat")
     print("3: Remove a habitat")
-    print("4: Exit to Main Menu")
+    print("4: Update a habitat")
+    print("5: Exit to Main Menu")
     print("0. Exit the program")
 
     from cli import (
     view_animals_by_habitat,
     add_habitat,
     remove_habitat,
+    update_habitat
     )
 
     habitat_choice = input("> ")
@@ -30,6 +32,8 @@ def habitat_sub_menu():
     elif habitat_choice == "3":
         remove_habitat()
     elif habitat_choice == "4":
+        update_habitat()
+    elif habitat_choice == "5":
         main_menu()
     else:
         print("Invalid choice") 
@@ -40,7 +44,8 @@ def animal_sub_menu():
     print("2: Select an animal by its ID")
     print("3: Add an animal")
     print("4: Remove an animal")
-    print("5: Exit to Main Menu")
+    print("5: Update an animal")
+    print("6: Exit to Main Menu")
     print("0. Exit the program")
     
     animal_choice = input("> ")
@@ -48,7 +53,8 @@ def animal_sub_menu():
     view_animals_by_habitat,
     add_animal,
     remove_animal,
-    choose_animal_by_id
+    choose_animal_by_id,
+    update_animal
     )
 
     if animal_choice == "0":
@@ -62,6 +68,8 @@ def animal_sub_menu():
     elif animal_choice == "4":
         remove_animal()
     elif animal_choice == "5":
+        update_animal()
+    elif animal_choice == "6":
         main_menu()
     else:
         print("Invalid choice")
@@ -109,14 +117,14 @@ def print_full_menu():
 def print_habitats():
     habitats = Habitat.get_all()
     for habitat in habitats:
-        print(f"{habitat.id} | {habitat.name}")
+        print(f"Habitat ID: {habitat.id} | {habitat.name}")
 
 def print_animals():
     habitats = Habitat.get_all()
     for habitat in habitats:
         animals_in_habitat = habitat.animals()
         for animal in animals_in_habitat:
-            print(f"{animal.id } | {animal.name} | {animal.color} | {animal.predator} | Habitat ID: {animal.habitat_id}")
+            print(f"Animal ID: {animal.id } | {animal.name}")
 
 def exit_program():
     print("Goodbye!")

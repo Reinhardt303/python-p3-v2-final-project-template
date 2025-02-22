@@ -34,7 +34,7 @@ def view_animals_by_habitat():
         animals = habitat.animals()      
         if animals:
             for animal in animals:
-                print(f"{animal.id} | {animal.name} | Habitat ID: {animal.habitat_id}")
+                print(f"Animal ID: {animal.id} | {animal.name} | Habitat ID: {animal.habitat_id}")
         else:
             print(f"No animals found in that habitat")
     else:
@@ -45,7 +45,7 @@ def view_animals_by_habitat():
 def choose_animal_by_id():
     search_id = input("Enter an animal's ID: ")
     animal = Animal.find_by_id(search_id)
-    print(f"{animal.id } | {animal.name} | {animal.color} | {animal.predator} | Habitat ID: {animal.habitat_id}")
+    print(f"Animal ID: {animal.id } | {animal.name} | {animal.color} | Predator: {animal.predator} | Habitat ID: {animal.habitat_id}")
     animal_sub_menu()
 
 def show_listed_habitats():
@@ -101,6 +101,40 @@ def remove_animal():
     animal = Animal.find_by_id(int(animal_id))
     Animal.delete(animal)
     print_animals()
+    animal_sub_menu()
+
+def update_habitat():
+    id_ = input("Enter the habitat's id: ")
+    if habitat := Habitat.find_by_id(id_):
+        try:
+            name = input("Enter the habitat's new name: ")
+            habitat.name = name
+            habitat.update()
+            print(f'Success: {habitat}')
+        except Exception as exc:
+            print("Error updating habitat: ", exc)
+    else:
+        print(f'Habitat {id_} not found')
+    habitat_sub_menu()
+
+def update_animal():
+    id_ = input("Enter the animal's id: ")
+    if animal := Animal.find_by_id(id_):
+        try:
+            name = input("Enter the animal's new name: ")
+            animal.name = name
+            color = input("Enter the animal's new color: ")
+            animal.color = color
+            predator = input("Enter the animal's new predator status(True or False): ")
+            animal.predator = bool(predator)
+            habitat_id = input("Enter the animal's new habitat_id: ")
+            animal.habitat_id = int(habitat_id)
+            animal.update()
+            print(f'Success: {animal}')
+        except Exception as exc:
+            print("Error updating animal: ", exc)
+    else:
+        print(f'Animal {id_} not found')
     animal_sub_menu()
 
 if __name__ == "__main__":
