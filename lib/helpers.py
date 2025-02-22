@@ -1,19 +1,9 @@
 from models.habitat import Habitat
-from cli import (
-    view_animals_by_habitat,
-    add_habitat,
-    remove_habitat,
-    add_animal,
-    remove_animal,
-    choose_animal_by_id
-)
 
 def main_menu():
     print("Main Menu - Please select an option:")
     print('1: Show listed habitats')
     print("2: Show listed animals")
-    print("3: Add an animal")
-    print("4: Add a habitat")
     print("0. Exit the program")
 
 def habitat_sub_menu():
@@ -23,6 +13,13 @@ def habitat_sub_menu():
     print("3: Remove a habitat")
     print("4: Exit to Main Menu")
     print("0. Exit the program")
+
+    from cli import (
+    view_animals_by_habitat,
+    add_habitat,
+    remove_habitat,
+    )
+
     habitat_choice = input("> ")
     if habitat_choice == "0":
         exit_program()
@@ -33,7 +30,7 @@ def habitat_sub_menu():
     elif habitat_choice == "3":
         remove_habitat()
     elif habitat_choice == "4":
-        pass
+        main_menu()
     else:
         print("Invalid choice") 
 
@@ -47,6 +44,13 @@ def animal_sub_menu():
     print("0. Exit the program")
     
     animal_choice = input("> ")
+    from cli import (
+    view_animals_by_habitat,
+    add_animal,
+    remove_animal,
+    choose_animal_by_id
+    )
+
     if animal_choice == "0":
         exit_program()
     elif animal_choice == "1":
@@ -55,10 +59,10 @@ def animal_sub_menu():
         choose_animal_by_id()
     elif animal_choice == "3":
         add_animal()
-    elif animal_choice == "34":
+    elif animal_choice == "4":
         remove_animal()
     elif animal_choice == "5":
-        pass
+        main_menu()
     else:
         print("Invalid choice")
 
@@ -67,11 +71,20 @@ def print_full_menu():
     print("1: View animals by habitat")
     print("2: Add an animal")
     print("3: Select an animal by its ID")
-    print("3: Remove an animal")
-    print("4: Add a habitat")
-    print("5: Remove a habitat")
-    print("6: Exit to Main Menu")
+    print("4: Remove an animal")
+    print("5: Add a habitat")
+    print("6: Remove a habitat")
+    print("7: Exit to Main Menu")
     print("0. Exit the program")
+
+    from cli import (
+    view_animals_by_habitat,
+    add_habitat,
+    remove_habitat,
+    add_animal,
+    remove_animal,
+    choose_animal_by_id
+    )
     
     choice = input("> ")
     if choice == "0":
@@ -89,7 +102,7 @@ def print_full_menu():
     elif choice == "6":
         remove_habitat()
     elif choice == "7":
-        pass
+        main_menu()
     else:
         print("Invalid choice")
 

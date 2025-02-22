@@ -51,7 +51,22 @@ def choose_animal_by_id():
 def show_listed_habitats():
     print_habitats()   
     habitat_sub_menu()
-
+    habitat_sub_menu_select()
+    
+def habitat_sub_menu_select():
+    habitat_choice = input("> ")
+    if habitat_choice == "0":
+        exit_program()
+    elif habitat_choice == "1":
+        view_animals_by_habitat()
+    elif habitat_choice == "2":
+        add_habitat()
+    elif habitat_choice == "3":
+        remove_habitat()
+    elif habitat_choice == "4":
+        main_menu()
+    else:
+        print("Invalid choice") 
 def show_listed_animals():
     print_animals()
     animal_sub_menu()
@@ -68,7 +83,6 @@ def add_animal():
     print_animals()
     animal_sub_menu()
 
-
 def add_habitat():
     name = input("Enter a name for the habitat: ")
     Habitat.create(name)
@@ -76,14 +90,16 @@ def add_habitat():
     habitat_sub_menu()
 
 def remove_habitat():
-    habitat_id = input("Enter a habitat ID to delete")
-    Habitat.delete(habitat_id)
+    habitat_id = input("Enter a habitat ID to delete: ")
+    habitat = Habitat.find_by_id(int(habitat_id))
+    Habitat.delete(habitat)
     print_habitats()   
     habitat_sub_menu()
 
 def remove_animal():
-    animal_id = input("Enter a animal ID to delete")
-    Animal.delete(animal_id)
+    animal_id = input("Enter a animal ID to delete: ")
+    animal = Animal.find_by_id(int(animal_id))
+    Animal.delete(animal)
     print_animals()
     animal_sub_menu()
 
