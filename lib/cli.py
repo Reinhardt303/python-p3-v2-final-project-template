@@ -8,7 +8,7 @@ from helpers import (
     print_animals,
     animal_sub_menu,
     print_full_menu,
-    main_menu
+    main_menu,
 )
 
 def main():
@@ -46,6 +46,7 @@ def choose_animal_by_id():
     search_id = input("Enter an animal's ID: ")
     animal = Animal.find_by_id(search_id)
     print(f"{animal.id } | {animal.name} | {animal.color} | {animal.predator} | Habitat ID: {animal.habitat_id}")
+    animal_sub_menu()
 
 def show_listed_habitats():
     print_habitats()   

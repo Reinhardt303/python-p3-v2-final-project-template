@@ -1,4 +1,12 @@
 from models.habitat import Habitat
+from cli import (
+    view_animals_by_habitat,
+    add_habitat,
+    remove_habitat,
+    add_animal,
+    remove_animal,
+    choose_animal_by_id
+)
 
 def main_menu():
     print("Main Menu - Please select an option:")
@@ -32,11 +40,10 @@ def habitat_sub_menu():
 def animal_sub_menu():
     print("Please select an option:")
     print("1: View animals by habitat")
-    print("2: Add an animal")
-    print("3: Remove an animal")
-    print("4: Add a habitat")
-    print("5: Remove a habitat")
-    print("6: Exit to Main Menu")
+    print("2: Select an animal by its ID")
+    print("3: Add an animal")
+    print("4: Remove an animal")
+    print("5: Exit to Main Menu")
     print("0. Exit the program")
     
     animal_choice = input("> ")
@@ -45,14 +52,12 @@ def animal_sub_menu():
     elif animal_choice == "1":
         view_animals_by_habitat()
     elif animal_choice == "2":
-        add_animal()
+        choose_animal_by_id()
     elif animal_choice == "3":
+        add_animal()
+    elif animal_choice == "34":
         remove_animal()
-    elif habitat_choice == "4":
-        add_habitat()
-    elif habitat_choice == "5":
-        remove_habitat()
-    elif animal_choice == "6":
+    elif animal_choice == "5":
         pass
     else:
         print("Invalid choice")
@@ -61,20 +66,29 @@ def print_full_menu():
     print("Please select an option:")
     print("1: View animals by habitat")
     print("2: Add an animal")
+    print("3: Select an animal by its ID")
     print("3: Remove an animal")
-    print("4: Exit to Main Menu")
+    print("4: Add a habitat")
+    print("5: Remove a habitat")
+    print("6: Exit to Main Menu")
     print("0. Exit the program")
     
-    animal_choice = input("> ")
-    if animal_choice == "0":
+    choice = input("> ")
+    if choice == "0":
         exit_program()
-    elif animal_choice == "1":
+    elif choice == "1":
         view_animals_by_habitat()
-    elif animal_choice == "2":
+    elif choice == "2":
         add_animal()
-    elif animal_choice == "3":
+    elif choice == "3":
+        choose_animal_by_id()
+    elif choice == "4":
         remove_animal()
-    elif animal_choice == "4":
+    elif choice == "5":
+        add_habitat()
+    elif choice == "6":
+        remove_habitat()
+    elif choice == "7":
         pass
     else:
         print("Invalid choice")
